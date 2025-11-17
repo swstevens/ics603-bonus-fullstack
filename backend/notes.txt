@@ -1,0 +1,38 @@
+
+## Using the REST API
+
+### Testing that the API is running
+curl http://localhost:8000/
+
+### Classifying a new reflection
+curl -X POST http://localhost:8000/api/reflections/classify \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Learning Python",
+    "text": "Today I spent time learning about async programming in Python. It was challenging but rewarding.",
+    "timestamp": "2025-11-13T10:30:00Z"
+  }'
+
+
+### Adding a new reflection
+curl -X POST http://localhost:8000/api/reflections \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Morning Meditation",
+    "text": "Had a peaceful meditation session focusing on gratitude and presence.",
+    "timestamp": "2025-11-13T08:00:00Z",
+	"topics":["learning","programming","asynchronous-programming"]
+  }'
+
+
+### Getting a new reflection by Id
+curl http://localhost:8000/api/reflections/1
+
+
+### Adding new topics
+curl -X POST http://localhost:8000/api/topics \
+  -H "Content-Type: application/json" \
+  -d '{"names": ["meditation", "Cooking"]}'
+
+### Getting all the topics
+curl -X GET http://localhost:8000/api/topics
