@@ -1,0 +1,6 @@
+fastapi==0.121.2
+uvicorn==0.38.0
+python-fasthtml==0.12.33
+httpx==0.28.1
+sqlalchemy==2.0.44
+python-dotenv==1.2.1

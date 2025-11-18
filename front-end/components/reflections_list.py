@@ -4,9 +4,12 @@ import httpx
 API_BASE = "http://localhost:8000"
 
 async def get_reflections(user_id):
-    """Fetch reflections by user"""
+    """Fetch reflections by user, or all if user_id is 0"""
     async with httpx.AsyncClient() as client:
-        response = await client.get(f"{API_BASE}/api/reflections?user_id={user_id}")
+        url = f"{API_BASE}/api/reflections"
+        if user_id and user_id != 0:
+            url += f"?user_id={user_id}"
+        response = await client.get(url)
         return response.json()
 
 async def render_reflections_list(user_id, users):
@@ -18,6 +21,7 @@ async def render_reflections_list(user_id, users):
         Div(
             Label("Filter by User:", style="font-weight: bold; margin-right: 10px;"),
             Select(
+                Option("All Users", value="0", selected=(user_id == 0)),
                 *[Option(f"{u['first_name']} ({u['email']})", value=str(u['id']),
                         selected=(u['id'] == user_id)) for u in users],
                 hx_get="/reflections",

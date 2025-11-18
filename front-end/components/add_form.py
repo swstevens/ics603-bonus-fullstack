@@ -12,7 +12,7 @@ def render_add_form(users):
             Div(
                 Label("User:", style="font-weight: bold; margin-right: 10px;"),
                 Select(
-                    *[Option(f"{u['first_name']} ({u['email']})", value=str(u['id'])) for u in users],
+                    *[Option(f"{u['first_name']} ({u['email']})", value=str(u['id']), selected=(u['id'] == 1)) for u in users],
                     name="user_id",
                     required=True
                 ),

@@ -35,7 +35,7 @@ async def post(user_id: int, title: str, text: str):
 
 # Reflections list page
 @rt("/reflections")
-async def get(user_id: int = 1):
+async def get(user_id: int = 0):
     users = await get_users()
     return Titled("My Reflections",
         H1("Reflection Manager"),
